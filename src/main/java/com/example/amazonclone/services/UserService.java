@@ -99,6 +99,11 @@ public class UserService implements AuthenticationService<UserDto, CredentialsDt
         return userDtos;
     }
 
+    public UserDto getById(Long id) throws NotFoundException {
+        return new UserDto(userRepository.findById(id)
+                .orElseThrow(()->new NotFoundException("User was not found!")));
+    }
+
     public UserDto addFavouriteProductColor(Long userId, Long productColorId) throws NotFoundException {
         User user = userRepository.findById(userId)
                 .orElseThrow(()->new NotFoundException("User was not found!"));

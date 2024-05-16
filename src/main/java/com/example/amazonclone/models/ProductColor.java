@@ -44,7 +44,7 @@ public class ProductColor {
     @JoinTable(
             name="product_color_sizes",
             joinColumns = @JoinColumn(name="product_color_id"),
-            inverseJoinColumns = @JoinColumn(name="product_size_id"))
+            inverseJoinColumns = @JoinColumn(name= "size_id"))
     private Collection<ProductSize> productSizes = new ArrayList<>();
 
     @ManyToMany(mappedBy = "favouriteProductColors")

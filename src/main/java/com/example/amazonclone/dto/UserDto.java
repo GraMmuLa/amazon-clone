@@ -26,7 +26,8 @@ public class UserDto implements DtoEntity<User, Long>{
     protected String roleName;
     protected Timestamp createdAt;
     private List<Long> favouriteProductColorIds = new ArrayList<>();
-    private List<Long> productIds = new ArrayList<>();
+    @Nullable
+    private Long banner;
 
     public UserDto(User entity) {
         this.username = entity.getUsername();
@@ -38,10 +39,9 @@ public class UserDto implements DtoEntity<User, Long>{
         this.roleName = entity.getRole().getRoleName();
         this.id = entity.getId();
         this.createdAt = entity.getCreatedAt();
-        if(entity.getFavouriteProductColors() != null)
-            entity.getFavouriteProductColors().forEach(x->favouriteProductColorIds.add(x.getId()));
-        if(entity.getProducts() != null)
-            entity.getProducts().forEach(x-> productIds.add(x.getId()));
+        entity.getFavouriteProductColors().forEach(x->favouriteProductColorIds.add(x.getId()));
+        if(entity.getBanner() != null)
+            this.banner = entity.getBanner().getId();
     }
 
     @Override

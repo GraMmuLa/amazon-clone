@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Service
-public class SubcategoryImageService implements JpaSingleImageService<SubcategoryImageDto, SubcategoryImage, Long> {
+public class SubcategoryImageService implements JpaService<SubcategoryImageDto, SubcategoryImage, Long> {
 
     private final SubcategoryImageRepository subcategoryImageRepository;
     private final SubcategoryRepository subcategoryRepository;

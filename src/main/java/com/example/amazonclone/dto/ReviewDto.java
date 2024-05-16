@@ -4,45 +4,44 @@ import com.example.amazonclone.models.ProductReview;
 import jakarta.annotation.Nullable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
 
 import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
-public class ProductReviewDto implements DtoEntity<ProductReview, Long> {
+public class ReviewDto implements DtoEntity<ProductReview, Long> {
 
     @Nullable
     private Long id;
-
-    private String username;
 
     private Double mark;
 
     @Nullable
     private String reviewText;
 
+    private Long userId;
+
     private Long productId;
 
     private Timestamp createdAt;
 
-    public ProductReviewDto(ProductReview entity) {
+    public ReviewDto(ProductReview entity) {
         this.id = entity.getId();
-        this.username = entity.getUsername();
+        this.userId = entity.getUser().getId();
         this.mark = entity.getMark();
         this.reviewText = entity.getReviewText();
         this.productId = entity.getProduct().getId();
         this.createdAt = entity.getCreatedAt();
     }
 
-    public ProductReviewDto(String username, Double mark, Long productId) {
-        this.username = username;
+    public ReviewDto(Double mark, Long userId, Long productId) {
+        this.userId = userId;
         this.mark = mark;
         this.productId = productId;
     }
 
-    public ProductReviewDto(String username, Double mark, @Nullable String reviewText, Long productId) {
-        this(username, mark, productId);
+    public ReviewDto(Double mark, @Nullable String reviewText, Long userId, Long productId) {
+        this(mark, productId, userId);
         this.reviewText = reviewText;
     }
 
@@ -52,7 +51,6 @@ public class ProductReviewDto implements DtoEntity<ProductReview, Long> {
 
         if(id != null)
             productReview.setId(id);
-        productReview.setUsername(username);
         productReview.setMark(mark);
         if(reviewText != null)
             productReview.setReviewText(reviewText);
@@ -62,8 +60,7 @@ public class ProductReviewDto implements DtoEntity<ProductReview, Long> {
 
     @Override
     public ProductReview buildEntity(Long id) {
-        ProductReview productReview = buildEntity();
-        productReview.setId(id);
-        return productReview;
+        this.id = id;
+        return buildEntity();
     }
 }

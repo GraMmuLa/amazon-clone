@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @Service
-public class CategoryImageService implements JpaSingleImageService<CategoryImageDto, CategoryImage, Long> {
+public class CategoryImageService implements JpaService<CategoryImageDto, CategoryImage, Long> {
 
     private final CategoryImageRepository categoryImageRepository;
     private final CategoryRepository categoryRepository;

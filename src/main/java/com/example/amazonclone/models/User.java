@@ -1,9 +1,11 @@
 package com.example.amazonclone.models;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -36,12 +38,15 @@ public class User {
     @Column(name="phone", nullable = false, unique = true)
     private String phone;
 
+    @OneToOne(mappedBy = "user")
+    private Banner banner;
+
+    @OneToMany(mappedBy = "user")
+    private Collection<Product> products = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name="role_id")
     private Role role;
-
-    @OneToMany(mappedBy = "user")
-    private Collection<Product> products;
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(

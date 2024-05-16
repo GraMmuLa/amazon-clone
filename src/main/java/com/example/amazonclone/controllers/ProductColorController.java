@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -31,23 +32,28 @@ public class ProductColorController {
             @RequestParam(required = false, defaultValue = "") String sortBy,
             @RequestParam(required = false, defaultValue = "0") Double priceFrom,
             @RequestParam(required = false, defaultValue = "0") Double priceTo) {
-        if(!sortBy.equals("")) {
-            return switch (sortBy) {
-                case "price_asc" ->
-                        ResponseEntity.ok(productColorService.getAllByPriceAsc(PageRequest.of(page, quantity)));
-                case "price_desc" ->
-                        ResponseEntity.ok(productColorService.getAllByPriceDesc(PageRequest.of(page, quantity)));
-                case "new" ->
-                        ResponseEntity.ok(productColorService.getAllByCreatedAtAsc(PageRequest.of(page, quantity)));
-                default ->
-                        ResponseEntity.ok(productColorService.getAll(PageRequest.of(page, quantity)));
-            };
+
+        List<ProductColorDto> productColorDto;
+
+        switch (sortBy) {
+            case "price_asc" ->
+                    productColorDto = productColorService.getAllByPriceAsc(PageRequest.of(page, quantity));
+            case "price_desc" ->
+                    productColorDto = productColorService.getAllByPriceDesc(PageRequest.of(page, quantity));
+            case "new" ->
+                    productColorDto = productColorService.getAllByCreatedAtAsc(PageRequest.of(page, quantity));
+            default ->
+                    productColorDto = productColorService.getAll(PageRequest.of(page, quantity));
         }
-        if(priceTo == 0 && priceFrom == 0)
-            return ResponseEntity.ok(productColorService.getAll());
-        else if(priceTo == 0 && priceFrom != 0)
-            return ResponseEntity.ok(productColorService.getAllByPriceFromTo(priceFrom, Double.MAX_VALUE, PageRequest.of(page, quantity)));
-        return ResponseEntity.ok(productColorService.getAllByPriceFromTo(priceFrom, priceTo, PageRequest.of(page, quantity)));
+        if(priceTo == 0D && priceFrom == 0D)
+            return ResponseEntity.ok(productColorDto);
+        else if(priceTo == 0D && priceFrom != 0D) {
+            productColorDto.removeIf(item -> item.getPrice() < priceFrom);
+            return ResponseEntity.ok(productColorDto);
+        } else {
+            productColorDto.removeIf(item -> item.getPrice() < priceFrom || item.getPrice() > priceTo);
+            return ResponseEntity.ok(productColorDto);
+        }
     }
 
     @GetMapping("/size")

@@ -9,7 +9,7 @@ import java.util.Collection;
 
 @Entity
 @Data
-@Table(name="product_sizes")
+@Table(name= "sizes")
 public class ProductSize {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

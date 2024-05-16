@@ -27,7 +27,7 @@ public class ProductController{
     }
 
     @GetMapping
-    public ResponseEntity<ProductDto> getProduct(@RequestParam Long id){
+    public ResponseEntity<ProductDto> get(@RequestParam Long id){
         try {
 
             return ResponseEntity.ok(productService.get(id));
@@ -37,11 +37,20 @@ public class ProductController{
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<ProductDto>> getProducts(
+    public ResponseEntity<List<ProductDto>> getAll(
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "250") int quantity) {
 
         return ResponseEntity.ok(productService.getAll(PageRequest.of(page, quantity)));
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List<ProductDto>> getAllByUser(@RequestParam Long userId) {
+        try {
+            return ResponseEntity.ok(productService.getAllByUser(userId));
+        } catch (NotFoundException ex) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/size")

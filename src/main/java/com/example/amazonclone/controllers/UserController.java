@@ -25,6 +25,15 @@ public class UserController {
         return ResponseEntity.ok(userService.getAll());
     }
 
+    @GetMapping
+    public ResponseEntity<UserDto> get(@RequestParam Long id) {
+        try {
+            return ResponseEntity.ok(userService.getById(id));
+        } catch (NotFoundException ex) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("/addFavouriteProductColor")
     public ResponseEntity<Map<String, String>> addFavouriteColorToUser(@RequestParam Long userId,
                                                                        @RequestParam Long productColorId,

@@ -16,7 +16,7 @@ public class ProductColorSize {
     @Column(name="product_color_id", nullable = false)
     private Long productColorId;
 
-    @Column(name = "product_size_id", nullable = false)
+    @Column(name = "size_id", nullable = false)
     private Long productSizeId;
 
     @Column(name= "created_at")

@@ -1,9 +1,11 @@
 package com.example.amazonclone.services;
 
+import com.example.amazonclone.dto.DiscountDto;
 import com.example.amazonclone.dto.ProductDto;
 import com.example.amazonclone.exceptions.NotFoundException;
 import com.example.amazonclone.models.*;
 import com.example.amazonclone.repos.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class ProductService implements JpaService<ProductDto, Product, Long> {
 
@@ -21,19 +24,6 @@ public class ProductService implements JpaService<ProductDto, Product, Long> {
     private final DiscountTypeRepository discountTypeRepository;
     private final DiscountRepository discountRepository;
     private final UserRepository userRepository;
-
-    @Autowired
-    public ProductService(ProductRepository repository,
-                          ProductTypeRepository productTypeRepository,
-                          DiscountTypeRepository discountTypeRepository,
-                          DiscountRepository discountRepository,
-                          UserRepository userRepository) {
-        this.productRepository = repository;
-        this.productTypeRepository = productTypeRepository;
-        this.discountTypeRepository = discountTypeRepository;
-        this.discountRepository = discountRepository;
-        this.userRepository = userRepository;
-    }
 
     private Product getProduct(Long id) throws NotFoundException {
         Iterable<Product> products = productRepository.findAll();
@@ -94,6 +84,17 @@ public class ProductService implements JpaService<ProductDto, Product, Long> {
             }
         }
         throw new NotFoundException("Discount type was not found");
+    }
+
+    public List<ProductDto> getAllByUser(Long userId) throws NotFoundException {
+        List<ProductDto> productDtos = new ArrayList<>();
+
+        List<Product> products = productRepository.findAllByUserId(userId)
+                .orElseThrow(()->new NotFoundException("Products was not found!"));
+
+        products.forEach(product -> productDtos.add(new ProductDto(product)));
+
+        return productDtos;
     }
 
     @Override

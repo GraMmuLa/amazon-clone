@@ -1,9 +1,8 @@
 package com.example.amazonclone.controllers;
 
-import com.example.amazonclone.dto.CategoryDto;
-import com.example.amazonclone.dto.ProductReviewDto;
+import com.example.amazonclone.dto.ReviewDto;
 import com.example.amazonclone.exceptions.NotFoundException;
-import com.example.amazonclone.services.ProductReviewService;
+import com.example.amazonclone.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -14,39 +13,39 @@ import java.util.List;
 @RestController
 @RequestMapping("/productReview")
 @CrossOrigin(origins = "http://localhost:3000")
-public class ProductReviewController {
-    private final ProductReviewService productReviewService;
+public class ReviewController {
+    private final ReviewService reviewService;
 
     @Autowired
-    public ProductReviewController(ProductReviewService productReviewService) {
-        this.productReviewService = productReviewService;
+    public ReviewController(ReviewService reviewService) {
+        this.reviewService = reviewService;
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<ProductReviewDto>> getProductReviews(
+    public ResponseEntity<List<ReviewDto>> getProductReviews(
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "250") int quantity) {
-        return ResponseEntity.ok(productReviewService.getAll(PageRequest.of(page, quantity)));
+        return ResponseEntity.ok(reviewService.getAll(PageRequest.of(page, quantity)));
     }
 
     @GetMapping("/size")
     public ResponseEntity<Integer> getSize() {
-        return ResponseEntity.ok(productReviewService.getSize());
+        return ResponseEntity.ok(reviewService.getSize());
     }
 
     @GetMapping
-    public ResponseEntity<ProductReviewDto> getProductReview(@RequestParam Long id) {
+    public ResponseEntity<ReviewDto> get(@RequestParam Long id) {
         try {
-            return ResponseEntity.ok(productReviewService.get(id));
+            return ResponseEntity.ok(reviewService.get(id));
         } catch (NotFoundException ex) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping
-    public ResponseEntity<ProductReviewDto> addProductReview(@RequestBody ProductReviewDto productReviewDto) {
+    public ResponseEntity<ReviewDto> addProductReview(@RequestBody ReviewDto reviewDto) {
         try {
-            return ResponseEntity.ok(productReviewService.add(productReviewDto));
+            return ResponseEntity.ok(reviewService.add(reviewDto));
         } catch (NotFoundException ex) {
             return ResponseEntity.notFound().build();
         }
@@ -55,7 +54,7 @@ public class ProductReviewController {
     @DeleteMapping
     public ResponseEntity<String> deleteProductReview(@RequestParam Long id) {
         try {
-            productReviewService.delete(id);
+            reviewService.delete(id);
             return ResponseEntity.ok().build();
         } catch (NotFoundException ex) {
             return ResponseEntity.notFound().build();
