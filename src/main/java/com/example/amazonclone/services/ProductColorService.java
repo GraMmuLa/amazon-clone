@@ -6,6 +6,7 @@ import com.example.amazonclone.exceptions.EntityAlreadyExistsException;
 import com.example.amazonclone.exceptions.NotFoundException;
 import com.example.amazonclone.models.*;
 import com.example.amazonclone.repos.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductColorService implements JpaService<ProductColorDto, ProductColor, Long> {
 
     private final ProductColorRepository productColorRepository;
@@ -25,21 +27,7 @@ public class ProductColorService implements JpaService<ProductColorDto, ProductC
     private final ColorRepository colorRepository;
     private final ProductColorImageService productColorImageService;
     private final ProductColorSizeRepository productColorSizeRepository;
-
-    @Autowired
-    public ProductColorService(ProductColorRepository productColorRepository,
-                               ProductRepository productRepository,
-                               ProductSizeRepository productSizeRepository,
-                               ColorRepository colorRepository,
-                               ProductColorImageService productColorImageRepository,
-                               ProductColorSizeRepository productColorSizeRepository) {
-        this.productColorRepository = productColorRepository;
-        this.productRepository = productRepository;
-        this.productSizeRepository = productSizeRepository;
-        this.colorRepository = colorRepository;
-        this.productColorImageService = productColorImageRepository;
-        this.productColorSizeRepository = productColorSizeRepository;
-    }
+    private final ProductTypeRepository productTypeRepository;
 
     private ProductColor getProductColor(Long id) throws NotFoundException {
         for(ProductColor productColor : productColorRepository.findAll())
@@ -122,7 +110,7 @@ public class ProductColorService implements JpaService<ProductColorDto, ProductC
     public List<ProductColorDto> getAllByCreatedAtAsc() {
         List<ProductColorDto> productColorDtos = new ArrayList<>();
 
-        productColorRepository.findAllByOrderByCreatedAtAsc().forEach(x->productColorDtos.add(new ProductColorDto(x)));
+        productColorRepository.findAllByOrderByCreatedAtDesc().forEach(x->productColorDtos.add(new ProductColorDto(x)));
 
         return productColorDtos;
     }
@@ -131,7 +119,7 @@ public class ProductColorService implements JpaService<ProductColorDto, ProductC
     public List<ProductColorDto> getAllByCreatedAtAsc(PageRequest pageRequest) {
         List<ProductColorDto> productColorDtos = new ArrayList<>();
 
-        Page<ProductColor> page = productColorRepository.findAllByOrderByCreatedAtAsc(pageRequest);
+        Page<ProductColor> page = productColorRepository.findAllByOrderByCreatedAtDesc(pageRequest);
         page.getContent().forEach(x->productColorDtos.add(new ProductColorDto(x)));
 
         return productColorDtos;
@@ -160,6 +148,52 @@ public class ProductColorService implements JpaService<ProductColorDto, ProductC
         });
 
         return productColorDtos;
+    }
+
+    public List<ProductColorDto> getAllByProductTypeIds(List<Long> productTypeIds) throws NotFoundException {
+        List<ProductColorDto> productColorDtos = new ArrayList<>();
+
+        for(Long productTypeId : productTypeIds) {
+            if(!productTypeRepository.existsById(productTypeId))
+                throw new NotFoundException("Product type was not found!");
+        }
+
+        for (ProductColor productColor : productColorRepository.findAll()) {
+            if(productTypeIds.contains(productColor.getProduct().getProductType().getId()))
+                productColorDtos.add(new ProductColorDto(productColor));
+        }
+
+        return productColorDtos;
+    }
+
+    public List<ProductColorDto> getAllByDiscountFromTo(Long discountPercentFrom, Long discountPercentTo) {
+        List<ProductColorDto> productColorDtos = new ArrayList<>();
+
+        for (ProductColor productColor : productColorRepository.findAll()) {
+            if(productColor.getDiscount() != null) {
+                long discountPercent = Math.round(productColor.getDiscount().getPrice() / productColor.getPrice() / 100);
+                if(discountPercent > discountPercentFrom && discountPercent < discountPercentTo)
+                    productColorDtos.add(new ProductColorDto(productColor));
+            }
+        }
+
+        return productColorDtos;
+    }
+
+    public List<ProductColorDto> getAllByDiscountFromToFromExisted(List<ProductColorDto> productColorDtos, Long discountPercentFrom) throws NotFoundException {
+        List<ProductColorDto> result = new ArrayList<>();
+
+        for (ProductColorDto productColorDto : productColorDtos) {
+            ProductColor productColor = productColorRepository.findById(productColorDto.getId())
+                    .orElseThrow(()->new NotFoundException("ProductColor was not found"));
+            if(productColor.getDiscount() != null) {
+                long discountPercent = Math.round(productColor.getDiscount().getPrice() / (productColor.getPrice() / 100D));
+                if(discountPercent > discountPercentFrom)
+                    result.add(new ProductColorDto(productColor));
+            }
+        }
+
+        return result;
     }
 
     @Override

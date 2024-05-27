@@ -6,9 +6,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface ProductColorRepository extends RefreshableRepository<ProductColor, Long> {
     @Query(value = "SELECT id,price,color_id,product_id,main_image_id,created_at FROM (SELECT pr.id, pr.price, pr.color_id, pr.product_id, pr.main_image_id, pr.created_at FROM product_colors AS pr " +
             "LEFT JOIN discounts AS ds ON pr.id = ds.product_color_id " +
@@ -44,8 +46,8 @@ public interface ProductColorRepository extends RefreshableRepository<ProductCol
             nativeQuery = true)
     public List<ProductColor> findAllPriceDesc();
 
-    public Page<ProductColor> findAllByOrderByCreatedAtAsc(Pageable pageable);
-    public List<ProductColor> findAllByOrderByCreatedAtAsc();
+    public Page<ProductColor> findAllByOrderByCreatedAtDesc(Pageable pageable);
+    public List<ProductColor> findAllByOrderByCreatedAtDesc();
 
     @Query(value = "SELECT id,price,color_id,product_id,main_image_id,created_at FROM (SELECT pr.id, pr.price, pr.color_id, pr.product_id, pr.main_image_id, pr.created_at FROM product_colors AS pr " +
             "LEFT JOIN discounts AS ds ON pr.id = ds.product_color_id " +
@@ -57,4 +59,8 @@ public interface ProductColorRepository extends RefreshableRepository<ProductCol
     public Page<ProductColor> findAllPriceFromTo(@Param("priceFrom") Double priceFrom,
                                                  @Param("priceTo") Double priceTo,
                                                  Pageable pageable);
+
+    //TODO
+//    @Query(value="SELECT ")
+//    public Page<ProductColor> findAllByDiscount(@Param("discountPercent") Long discountPerCent);
 }

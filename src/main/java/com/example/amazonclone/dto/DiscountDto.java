@@ -18,6 +18,7 @@ public class DiscountDto implements DtoEntity<Discount, Long> {
     private Long productColorId;
     private Timestamp createdAt;
 
+
     public DiscountDto(Double price, Timestamp period, Long discountTypeId, Long productColorId) {
         this.price = price;
         this.discountTypeId = discountTypeId;
