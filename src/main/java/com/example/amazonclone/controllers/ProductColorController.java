@@ -86,6 +86,18 @@ public class ProductColorController {
         return ResponseEntity.ok(productColorService.getSize());
     }
 
+    @GetMapping("/discountTypeName")
+    public ResponseEntity<List<ProductColorDto>> getAllByDiscountTypeName(
+            @RequestParam(required = false, defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "250") int quantity,
+            @RequestParam String discountTypeName) {
+        try {
+            return ResponseEntity.ok(productColorService.getAllByDiscountTypeName(discountTypeName));
+        } catch (NotFoundException ex) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping
     public ResponseEntity<ProductColorDto> get(@RequestParam Long id) {
         try {

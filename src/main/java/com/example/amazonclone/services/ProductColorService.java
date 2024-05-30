@@ -2,6 +2,7 @@ package com.example.amazonclone.services;
 
 import com.example.amazonclone.dto.ProductColorDto;
 import com.example.amazonclone.dto.ProductColorImageDto;
+import com.example.amazonclone.dto.ProductDto;
 import com.example.amazonclone.exceptions.EntityAlreadyExistsException;
 import com.example.amazonclone.exceptions.NotFoundException;
 import com.example.amazonclone.models.*;
@@ -30,6 +31,7 @@ public class ProductColorService implements JpaService<ProductColorDto, ProductC
     private final ProductTypeRepository productTypeRepository;
     private final SubcategoryRepository subcategoryRepository;
     private final UserRepository userRepository;
+    private final DiscountTypeRepository discountTypeRepository;
 
     private ProductColor getProductColor(Long id) throws NotFoundException {
         for(ProductColor productColor : productColorRepository.findAll())
@@ -108,6 +110,17 @@ public class ProductColorService implements JpaService<ProductColorDto, ProductC
         return productColorDtos;
     }
 
+    public List<ProductColorDto> getAllByDiscountTypeName(String discountTypename) throws NotFoundException {
+        List<ProductColorDto> productColorDtos = new ArrayList<>();
+
+        DiscountType discountType = discountTypeRepository.findByType(discountTypename).orElseThrow(()->
+                new NotFoundException("Discount type was not found!"));
+
+        if(discountType.getDiscounts() != null)
+            discountType.getDiscounts().forEach(x->productColorDtos.add(new ProductColorDto(x.getProductColor())));
+
+        return productColorDtos;
+    }
 
     public List<ProductColorDto> getAllByCreatedAtAsc() {
         List<ProductColorDto> productColorDtos = new ArrayList<>();
