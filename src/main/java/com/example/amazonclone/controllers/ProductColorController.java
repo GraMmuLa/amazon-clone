@@ -3,6 +3,7 @@ package com.example.amazonclone.controllers;
 import com.example.amazonclone.dto.ProductColorDto;
 import com.example.amazonclone.exceptions.EntityAlreadyExistsException;
 import com.example.amazonclone.exceptions.NotFoundException;
+import com.example.amazonclone.models.Product;
 import com.example.amazonclone.services.ProductColorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -25,7 +26,7 @@ public class ProductColorController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<ProductColorDto>> getProductColors(
+    public ResponseEntity<List<ProductColorDto>> getAll(
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "250") int quantity,
             @RequestParam(required = false, defaultValue = "") String sortBy,
@@ -81,12 +82,12 @@ public class ProductColorController {
     }
 
     @GetMapping("/size")
-    public ResponseEntity<Integer> getProductColorsSize() {
+    public ResponseEntity<Integer> getSize() {
         return ResponseEntity.ok(productColorService.getSize());
     }
 
     @GetMapping
-    public ResponseEntity<ProductColorDto> getProductColor(@RequestParam Long id) {
+    public ResponseEntity<ProductColorDto> get(@RequestParam Long id) {
         try {
             return ResponseEntity.ok(productColorService.get(id));
         } catch (NotFoundException ex) {
@@ -95,8 +96,35 @@ public class ProductColorController {
     }
 
     @GetMapping("/product")
-    public ResponseEntity<List<ProductColorDto>> getProductColorsByProductId(@RequestParam Long productId) {
+    public ResponseEntity<List<ProductColorDto>> getAllByProductId(@RequestParam Long productId) {
         return ResponseEntity.ok(productColorService.getAllByProductId(productId));
+    }
+
+    @GetMapping("/subcategory")
+    public ResponseEntity<List<ProductColorDto>> getAllBySubcategoryId(@RequestParam Long subcategoryId) {
+        try {
+            return ResponseEntity.ok(productColorService.getAllBySubcategoryId(subcategoryId));
+        } catch (NotFoundException ex) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/subcategoryName")
+    public ResponseEntity<List<ProductColorDto>> getAllBySubcategoryName(@RequestParam String subcategoryName) {
+        try {
+            return ResponseEntity.ok(productColorService.getAllBySubcategoryName(subcategoryName));
+        } catch (NotFoundException ex) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List<ProductColorDto>> getAllFavouritedByUser(@RequestParam Long userId) {
+        try {
+            return ResponseEntity.ok(productColorService.getAllFavouritedByUser(userId));
+        } catch (NotFoundException ex) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping

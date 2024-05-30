@@ -28,6 +28,8 @@ public class ProductColorService implements JpaService<ProductColorDto, ProductC
     private final ProductColorImageService productColorImageService;
     private final ProductColorSizeRepository productColorSizeRepository;
     private final ProductTypeRepository productTypeRepository;
+    private final SubcategoryRepository subcategoryRepository;
+    private final UserRepository userRepository;
 
     private ProductColor getProductColor(Long id) throws NotFoundException {
         for(ProductColor productColor : productColorRepository.findAll())
@@ -166,6 +168,32 @@ public class ProductColorService implements JpaService<ProductColorDto, ProductC
         return productColorDtos;
     }
 
+    public List<ProductColorDto> getAllBySubcategoryId(Long subcategoryId) throws NotFoundException {
+        List<ProductColorDto> productColorDtos = new ArrayList<>();
+
+        Subcategory subcategory = subcategoryRepository.findById(subcategoryId).orElseThrow(()->
+                new NotFoundException("Subcategory was not found!"));
+
+        List<Long> productTypeIds = new ArrayList<>();
+
+        subcategory.getProductTypes().forEach(productType -> productTypeIds.add(productType.getId()));
+
+        return getAllByProductTypeIds(productTypeIds);
+    }
+
+    public List<ProductColorDto> getAllBySubcategoryName(String subcategoryName) throws NotFoundException {
+        List<ProductColorDto> productColorDtos = new ArrayList<>();
+
+        Subcategory subcategory = subcategoryRepository.findByName(subcategoryName).orElseThrow(()->
+                new NotFoundException("Subcategory was not found!"));
+
+        List<Long> productTypeIds = new ArrayList<>();
+
+        subcategory.getProductTypes().forEach(productType -> productTypeIds.add(productType.getId()));
+
+        return getAllByProductTypeIds(productTypeIds);
+    }
+
     public List<ProductColorDto> getAllByDiscountFromTo(Long discountPercentFrom, Long discountPercentTo) {
         List<ProductColorDto> productColorDtos = new ArrayList<>();
 
@@ -194,6 +222,18 @@ public class ProductColorService implements JpaService<ProductColorDto, ProductC
         }
 
         return result;
+    }
+
+    public List<ProductColorDto> getAllFavouritedByUser(Long userId) throws NotFoundException {
+        User user = userRepository.findById(userId).orElseThrow(() ->
+                new NotFoundException("User was not found!"));
+
+        List<ProductColorDto> productColorDtos = new ArrayList<>();
+
+        user.getFavouriteProductColors().forEach(productColor ->
+                productColorDtos.add(new ProductColorDto(productColor)));
+
+        return productColorDtos;
     }
 
     @Override

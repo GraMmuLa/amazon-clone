@@ -15,9 +15,10 @@ public class Image {
 
     public Image(byte[] data) {
         this.data = data;
+        ImageUtil.compressImage(data);
     }
 
-    public void decompressImage() {
+    protected void decompressImage() {
         data = ImageUtil.decompressImage(data);
     }
 }

@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 @Entity
 @Data
 @Table(name = "reviews")
-public class ProductReview {
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")

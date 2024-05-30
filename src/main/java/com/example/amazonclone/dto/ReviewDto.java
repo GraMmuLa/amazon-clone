@@ -1,6 +1,6 @@
 package com.example.amazonclone.dto;
 
-import com.example.amazonclone.models.ProductReview;
+import com.example.amazonclone.models.Review;
 import jakarta.annotation.Nullable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
-public class ReviewDto implements DtoEntity<ProductReview, Long> {
+public class ReviewDto implements DtoEntity<Review, Long> {
 
     @Nullable
     private Long id;
@@ -25,7 +25,7 @@ public class ReviewDto implements DtoEntity<ProductReview, Long> {
 
     private Timestamp createdAt;
 
-    public ReviewDto(ProductReview entity) {
+    public ReviewDto(Review entity) {
         this.id = entity.getId();
         this.userId = entity.getUser().getId();
         this.mark = entity.getMark();
@@ -46,20 +46,20 @@ public class ReviewDto implements DtoEntity<ProductReview, Long> {
     }
 
     @Override
-    public ProductReview buildEntity() {
-        ProductReview productReview = new ProductReview();
+    public Review buildEntity() {
+        Review review = new Review();
 
         if(id != null)
-            productReview.setId(id);
-        productReview.setMark(mark);
+            review.setId(id);
+        review.setMark(mark);
         if(reviewText != null)
-            productReview.setReviewText(reviewText);
+            review.setReviewText(reviewText);
 
-        return productReview;
+        return review;
     }
 
     @Override
-    public ProductReview buildEntity(Long id) {
+    public Review buildEntity(Long id) {
         this.id = id;
         return buildEntity();
     }

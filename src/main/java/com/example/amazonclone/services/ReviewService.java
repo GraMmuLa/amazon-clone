@@ -3,7 +3,7 @@ package com.example.amazonclone.services;
 import com.example.amazonclone.dto.ReviewDto;
 import com.example.amazonclone.exceptions.NotFoundException;
 import com.example.amazonclone.models.Product;
-import com.example.amazonclone.models.ProductReview;
+import com.example.amazonclone.models.Review;
 import com.example.amazonclone.models.User;
 import com.example.amazonclone.repos.ProductRepository;
 import com.example.amazonclone.repos.ReviewRepository;
@@ -18,16 +18,16 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ReviewService implements JpaService<ReviewDto, ProductReview, Long> {
+public class ReviewService implements JpaService<ReviewDto, Review, Long> {
 
     private final ReviewRepository reviewRepository;
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
 
-    private ProductReview getProductReview(Long id) throws NotFoundException {
-        for(ProductReview productReview : reviewRepository.findAll())
-            if(productReview.getId().equals(id))
-                return productReview;
+    private Review getProductReview(Long id) throws NotFoundException {
+        for(Review review : reviewRepository.findAll())
+            if(review.getId().equals(id))
+                return review;
         throw new NotFoundException("Product review was not found!");
     }
 
@@ -39,7 +39,7 @@ public class ReviewService implements JpaService<ReviewDto, ProductReview, Long>
     @Override
     public List<ReviewDto> getAll(PageRequest pageRequest) {
         List<ReviewDto> reviewDtos = new ArrayList<>();
-        Page<ProductReview> page = reviewRepository.findAll(pageRequest);
+        Page<Review> page = reviewRepository.findAll(pageRequest);
 
         page.getContent().forEach(x-> reviewDtos.add(new ReviewDto(x)));
 
@@ -66,21 +66,27 @@ public class ReviewService implements JpaService<ReviewDto, ProductReview, Long>
 
     @Override
     public ReviewDto add(ReviewDto dtoEntity) throws NotFoundException {
-        ProductReview productReview = dtoEntity.buildEntity();
-        for (Product product : productRepository.findAll())
-            if(dtoEntity.getProductId().equals(product.getId()))
-                productReview.setProduct(product);
-        if(productReview.getProduct() == null)
+        Review review = dtoEntity.buildEntity();
+        for (Product product : productRepository.findAll()) {
+            if(dtoEntity.getProductId().equals(product.getId())) {
+                review.setProduct(product);
+                break;
+            }
+        }
+        if(review.getProduct() == null)
             throw new NotFoundException("Product was not found!");
 
-        for (User user : userRepository.findAll())
-            if(dtoEntity.getProductId().equals(user.getId()))
-                productReview.setUser(user);
-        if(productReview.getProduct() == null)
+        for (User user : userRepository.findAll()) {
+            if(dtoEntity.getUserId().equals(user.getId())) {
+                review.setUser(user);
+                break;
+            }
+        }
+        if(review.getProduct() == null)
             throw new NotFoundException("User was not found!");
 
-        reviewRepository.saveAndFlush(productReview);
-        reviewRepository.refresh(productReview);
+        reviewRepository.saveAndFlush(review);
+        reviewRepository.refresh(review);
 
         return getLast();
     }
@@ -94,10 +100,10 @@ public class ReviewService implements JpaService<ReviewDto, ProductReview, Long>
     public ReviewDto update(Long id, ReviewDto dtoEntity) throws NotFoundException {
         delete(id);
 
-        ProductReview productReview = dtoEntity.buildEntity(id);
+        Review review = dtoEntity.buildEntity(id);
 
-        reviewRepository.saveAndFlush(productReview);
-        reviewRepository.refresh(productReview);
+        reviewRepository.saveAndFlush(review);
+        reviewRepository.refresh(review);
 
         return getLast();
     }

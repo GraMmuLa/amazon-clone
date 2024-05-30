@@ -33,9 +33,9 @@ public class BannerDto extends Image implements DtoEntity<Banner, Long> {
         this.createdAt = entity.getCreatedAt();
     }
 
-    public BannerDto(MultipartFile file, Long categoryId) throws IOException {
+    public BannerDto(MultipartFile file, Long userId) throws IOException {
         super(file);
-        this.userId = categoryId;
+        this.userId = userId;
     }
 
     @Override

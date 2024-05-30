@@ -37,8 +37,8 @@ public class ProductDto implements DtoEntity<Product, Long> {
         this.userId = entity.getUser().getId();
         if(entity.getProductColors() != null)
             entity.getProductColors().forEach(x->productColorsIds.add(x.getId()));
-        if(entity.getProductReviews() != null)
-            entity.getProductReviews().forEach(x->this.productReviewsIds.add(x.getId()));
+        if(entity.getReviews() != null)
+            entity.getReviews().forEach(x->this.productReviewsIds.add(x.getId()));
         if(entity.getProductDetailValues() != null)
             entity.getProductDetailValues().forEach(x->this.productDetailValuesIds.add(x.getId()));
         this.createdAt = entity.getCreatedAt();

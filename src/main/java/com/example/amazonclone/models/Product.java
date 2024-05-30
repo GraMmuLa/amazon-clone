@@ -39,7 +39,7 @@ public class Product {
     private Collection<ProductColor> productColors = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
-    private Collection<ProductReview> productReviews = new ArrayList<>();
+    private Collection<Review> reviews = new ArrayList<>();
 
     @Column(name= "created_at")
     private Timestamp createdAt;

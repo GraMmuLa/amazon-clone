@@ -23,7 +23,7 @@ public class BannerService implements JpaService<BannerDto, Banner, Long> {
     @Override
     public BannerDto get(Long id) throws NotFoundException {
         return new BannerDto(bannerRepository.findById(id)
-                .orElseThrow(()->new NotFoundException("Banner was not found!"))).deflateImage();
+                .orElseThrow(()->new NotFoundException("Banner was not found!")));
     }
 
     @Override
@@ -54,14 +54,14 @@ public class BannerService implements JpaService<BannerDto, Banner, Long> {
     @Override
     public BannerDto getLast() {
         List<BannerDto> bannerDtos = getAll();
-        return bannerDtos.get(bannerDtos.size()-1).deflateImage();
+        return bannerDtos.get(bannerDtos.size()-1);
     }
 
     @Override
     public BannerDto add(BannerDto dtoEntity) throws NotFoundException, EntityAlreadyExistsException {
 
         if (bannerRepository.findByUserId(dtoEntity.getUserId()).isPresent())
-            throw new EntityAlreadyExistsException("Banner with this user id is present!");
+            throw new EntityAlreadyExistsException("Banner with this user id is already present!");
 
         Banner banner = dtoEntity.buildEntity();
 
@@ -70,7 +70,7 @@ public class BannerService implements JpaService<BannerDto, Banner, Long> {
                 banner.setUser(user);
                 bannerRepository.saveAndFlush(banner);
                 bannerRepository.refresh(banner);
-                return getLast().deflateImage();
+                return getLast();
             }
         }
         throw new NotFoundException("Seller(user) was not found!");
