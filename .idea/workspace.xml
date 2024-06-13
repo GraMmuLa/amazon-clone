@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="aa36ce3b-f615-4180-ab47-2b729abdaee2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/database/amazon-db.sql" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2dLq84698AiigVx06fT54Asfyz1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "JPA.DatabaseSchemaImportDialog": "d485718a-baff-4f14-ae7f-6a8287474f21",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "parallelBranch",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_directory_selection": "C:/Program Files/JetBrains/IntelliJ IDEA 2023.1.3/IdeaProjects/amazon-clone/src/main/java",
+    "last_opened_file_path": "C:/Program Files/JetBrains/IntelliJ IDEA 2023.1.3/IdeaProjects/amazon-clone/src/database",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml",
+    "spring.configuration.checksum": "6a672db044fa8bf6a5939c4f3d836dc3",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.amazonclone.configuration" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Program Files\JetBrains\IntelliJ IDEA 2023.1.3\IdeaProjects\amazon-clone\src\database" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Program Files\JetBrains\IntelliJ IDEA 2023.1.3\IdeaProjects\amazon-clone\src\main\resources" />
+    </key>
+    <key name="ImportMappingsDialog.RecentPackages">
+      <recent name="models" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="AmazonCloneApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="amazon-clone" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.amazonclone.AmazonCloneApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aa36ce3b-f615-4180-ab47-2b729abdaee2" name="Changes" comment="" />
+      <created>1709797543955</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709797543955</updated>
+      <workItem from="1709797546753" duration="7732000" />
+      <workItem from="1709898197136" duration="3514000" />
+      <workItem from="1709917632265" duration="6471000" />
+      <workItem from="1710154736912" duration="564000" />
+      <workItem from="1710192650233" duration="1837000" />
+      <workItem from="1710280341605" duration="6195000" />
+      <workItem from="1710340537749" duration="5632000" />
+      <workItem from="1710351432011" duration="10293000" />
+      <workItem from="1710365282273" duration="317000" />
+      <workItem from="1710409200207" duration="20539000" />
+      <workItem from="1710511167883" duration="5717000" />
+      <workItem from="1710680458295" duration="1113000" />
+      <workItem from="1710705107578" duration="1897000" />
+      <workItem from="1710881957907" duration="7016000" />
+      <workItem from="1710924043805" duration="6660000" />
+      <workItem from="1710955382691" duration="1162000" />
+      <workItem from="1711014284692" duration="4177000" />
+      <workItem from="1711054885617" duration="5408000" />
+      <workItem from="1711221342140" duration="3109000" />
+      <workItem from="1711284293052" duration="3296000" />
+      <workItem from="1711361830956" duration="10623000" />
+      <workItem from="1711571850329" duration="5612000" />
+      <workItem from="1711588730518" duration="3439000" />
+      <workItem from="1711630970312" duration="3551000" />
+      <workItem from="1711653616773" duration="3467000" />
+      <workItem from="1711657121216" duration="715000" />
+      <workItem from="1711709512911" duration="6655000" />
+      <workItem from="1711803480638" duration="8868000" />
+      <workItem from="1711983501892" duration="259000" />
+      <workItem from="1712071668451" duration="1358000" />
+      <workItem from="1712324054099" duration="25000" />
+      <workItem from="1712354287488" duration="626000" />
+      <workItem from="1712403079644" duration="1289000" />
+      <workItem from="1712446882507" duration="4473000" />
+      <workItem from="1712612640738" duration="65000" />
+      <workItem from="1712612762041" duration="5949000" />
+      <workItem from="1712954980492" duration="4516000" />
+      <workItem from="1713374924093" duration="579000" />
+      <workItem from="1713651522425" duration="7539000" />
+      <workItem from="1713886078869" duration="2824000" />
+      <workItem from="1714078070177" duration="4470000" />
+      <workItem from="1714218272799" duration="1309000" />
+      <workItem from="1714243517695" duration="6840000" />
+      <workItem from="1714423971769" duration="11093000" />
+      <workItem from="1714485952244" duration="58399000" />
+      <workItem from="1715118091560" duration="51950000" />
+      <workItem from="1715823696594" duration="17322000" />
+      <workItem from="1716187650043" duration="35859000" />
+      <workItem from="1716902248364" duration="20414000" />
+      <workItem from="1718102180761" duration="1175000" />
+      <workItem from="1718282987650" duration="284000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/services/CategoryService.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/services/CategoryImageService.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/services/SubcategoryImageService.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/services/ProductDetailKeyService.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/controllers/ColorController.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="126" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/services/ProductColorService.java</url>
+          <line>307</line>
+          <option name="timeStamp" value="135" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/controllers/DiscountController.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="136" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/controllers/AuthenticationController.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="139" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/controllers/AuthenticationController.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="143" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/controllers/AuthenticationController.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="145" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/services/UserService.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="149" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/controllers/ProductController.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/controllers/ProductCardDesignController.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="166" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/dto/ProductCardDesignDto.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="167" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/controllers/ProductCardController.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="168" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/controllers/ProductCardDesignImageController.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="169" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/controllers/ProductCardDesignImageController.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="170" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/controllers/ReviewImageController.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="172" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/controllers/ReviewController.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="173" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/amazonclone/controllers/BannerController.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="174" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.example.amazonclone.dto.ProductCardDesignImageDto" memberName="data" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
